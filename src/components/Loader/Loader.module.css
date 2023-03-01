@@ -1,15 +1,5 @@
-
-.overlay{
-    position: fixed;
-    top:0;
-    left:0;
+.Loader {
     display: flex;
+    padding-top: 300px;
     justify-content: center;
-    align-items: center;
-    background-color: rgba(0, 0, 0, 0.8);
-    width: 100vw;
-    height: 100vh;
-}
-.loader{
-    z-index: 1200;
 }

@@ -1,10 +1,18 @@
-import DotLoader from 'react-spinners/ClipLoader';
-import s from './Loader.module.css';
+import { HollowDotsSpinner } from 'react-epic-spinners';
+import style from './Loader.module.css';
+import PropTypes from 'prop-types';
 
-export default function Loader() {
+const Loader = ({ color, size }) => {
   return (
-    <div className={s.overlay}>
-      <DotLoader size={250} color={'#461646'} className={s.loader} />
+    <div className={style.Loader}>
+      <HollowDotsSpinner color={color} size={size} />
     </div>
   );
-}
+};
+
+Loader.propTypes = {
+  color: PropTypes.string.isRequired,
+  size: PropTypes.number.isRequired,
+};
+
+export default Loader;
