@@ -1,51 +1,46 @@
-import React, { Component } from 'react';
-import PropTypes from 'prop-types'; 
-import s from './Searchbar.module.css'
-import { toast } from 'react-toastify';
-
+import { Component } from 'react';
+import s from './Searchbar.module.css';
+import PropTypes from 'prop-types';
 
 export default class Searchbar extends Component {
   state = {
-    query: '',
+    searchData: '',
   };
 
-  handleInputChange = e => {
-    this.setState({ query: e.target.value.toLowerCase() });
+  static propTypes = {
+    onSubmit: PropTypes.func.isRequired,
   };
 
-  handleSubmit = event => {
-    event.preventDefault();
+  handleSubmit = e => {
+    e.preventDefault();
+    this.props.onSubmit(this.state.searchData);
+  };
 
-    if (this.state.query.trim() === '') {
-      toast.error('Enter your search query');
-      return;
-    }
-
-    this.props.onSubmit(this.state.query);
+  handleChange = evt => {
+    const { value } = evt.target;
+    this.setState({ searchData: value });
   };
 
   render() {
+    const { handleChange, handleSubmit } = this;
+
     return (
-      <header className={s.searchbar}>
-        <form className={s.searchForm} onSubmit={this.handleSubmit}>
+      <header className={s.Searchbar}>
+        <form className={s.SearchForm} onSubmit={handleSubmit}>
+          <button type="submit" className={s.SearchForm__button}>
+            <span className={s.SearchForm__button__label}>Search</span>
+          </button>
+
           <input
-            onInput={this.handleInputChange}
-            className={s.SearchFormInput}
+            className={s.SearchForm__input}
             type="text"
             autoComplete="off"
             autoFocus
             placeholder="Search images and photos"
-            value = {this.state.query}
+            onChange={handleChange}
           />
-          <button type="submit" className={s.searchFormButton}>
-            search
-          </button>
         </form>
       </header>
     );
   }
 }
-
-Searchbar.propTypes = {
-  onSubmit: PropTypes.func.isRequired,
-};
