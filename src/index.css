@@ -20,6 +20,7 @@ body {
   background-color: #fff;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: rgba(95, 95, 230, 0.727);
 }
 
 img {
