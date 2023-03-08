@@ -1,14 +1,30 @@
-import s from './Button.module.css';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import css from './Button.module.css';
 
-export default function Button({ nextPage }) {
-  return (
-    <button type="button" className={s.Button} onClick={nextPage}>
-      Load more
-    </button>
-  );
+class Button extends Component {
+  handleLoadMore = () => {
+    const { onClick } = this.props;
+    onClick();
+  };
+
+  render() {
+    return (
+      <div className={css.ButtonContainer}>
+        <button
+          type="button"
+          className={css.Button}
+          onClick={this.handleLoadMore}
+        >
+          Load more
+        </button>
+      </div>
+    );
+  }
 }
 
+export default Button;
+
 Button.propTypes = {
-  nextPage: PropTypes.func.isRequired,
+  handleLoadMore: PropTypes.func,
 };
