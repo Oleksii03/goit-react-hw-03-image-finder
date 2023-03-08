@@ -11,7 +11,7 @@ class App extends Component {
     photos: [],
     isLoading: false,
     error: null,
-    page: 1,
+    page: 0,
     totalHits: null,
   };
 
@@ -69,14 +69,11 @@ class App extends Component {
       <div className="App">
         <Searchbar onSubmit={this.handleFormSubmit} />
         {this.state.isLoading && <Loader />}
-        {this.state.error !== null && (
-          <i>An error {this.state.error} occured</i>
-        )}
         {(this.state.photos !== null && this.state.photos.length) === 0 && (
           <i className="message">Nothing was found per your request !</i>
         )}
-        <ImageGallery photos={this.state.photos} />
 
+        <ImageGallery photos={this.state.photos} />
         {this.state.totalHits > 12 &&
           this.state.totalHits / 12 > this.state.page && (
             <Button onClick={this.handleLoadMore} />
