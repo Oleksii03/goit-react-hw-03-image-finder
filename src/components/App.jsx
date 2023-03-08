@@ -42,7 +42,6 @@ class App extends Component {
     ) {
       console.log(this.state.query, this.state.page);
 
-      // fetch
       const fetchPhotos = async () => {
         try {
           this.setState({ isLoading: true });
@@ -74,7 +73,7 @@ class App extends Component {
           <i>An error {this.state.error} occured</i>
         )}
         {(this.state.photos !== null && this.state.photos.length) === 0 && (
-          <i>Nothing found, try to search something else</i>
+          <i className="message">Nothing was found per your request !</i>
         )}
         <ImageGallery photos={this.state.photos} />
 
